@@ -15,18 +15,26 @@
     </nav>
   </div>
 
-  <div>
+  <div class="form-container hidden-form">
     <form action="script.js" onsubmit="handleFormSubmission(event)" class="member-form">
-      <label for="name">Name</label>
-      <input type="text" id="name" name="name" required>
+      <div class="name-age-container">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="name">Age</label>
+        <input type="number" id="age" name="age" required>
+      </div>
       <label for="name">Description</label>
-      <input type="text" id="description" name="description" required>
-      <label for="name">Age</label>
-      <input type="number" id="age" name="age" required>
+      <input type="text" id="description" name="description" class="member-form-description" required>
       <label for="name">Image URL</label>
       <input type="text" id="image" name="image" required>
-      <input type="submit">
+      <button class="basic-button member-form-submit" onClick="toggleFormVisibility()">Add</button>
     </form>
+  </div>
+
+  <h1 class="members-title">Team Members</h1>
+  <div class="members-button-container">
+    <button class="basic-button add-button" onclick="toggleFormVisibility()">Add Member</button>
+    <button class="basic-button clear-button" onclick="clearMembers()">Clear Members</button>
   </div>
 
   <div class="member-cards-container"></div>

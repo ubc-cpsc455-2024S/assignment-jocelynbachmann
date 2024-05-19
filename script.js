@@ -25,11 +25,39 @@ let members = `[
   }
 ]`;
 
+document.addEventListener('DOMContentLoaded', () => {
+  showMemberCards();
+});
+
+function showMemberCards() {
+  const cardsContainer = document.querySelector('.member-cards-container');
+  let membersArr = JSON.parse(members);
+  cardsContainer.innerHTML = ''; 
+
+  membersArr.forEach((member, index) => {
+    const card = document.createElement('div');
+    card.classList.add('member-card');
+
+    card.innerHTML = `
+      <img src="${member.image}" alt="${member.name}">
+      <h2>${member.name}</h2>
+      <p>Age: ${member.age}</p>
+      <p>${member.description}</p>
+      <button onclick="removeMember(${index})" class="basic-button remove-button">Remove</button>
+    `;
+
+    cardsContainer.appendChild(card);
+  });
+}
+
+function toggleFormVisibility() {
+  const form = document.querySelector('.form-container');
+  form.classList.toggle('hidden-form');
+}
+
 function handleFormSubmission(event) {
     event.preventDefault();
-
-    console.log("members", members);
-    membersArr = JSON.parse(members);
+    let membersArr = JSON.parse(members);
 
     const form = event.target;
     const name = form.name.value;
@@ -37,14 +65,8 @@ function handleFormSubmission(event) {
     const age = form.age.value;
     const image = form.image.value;
 
-    console.log('Name:', name);
-    console.log('Description:', description);
-    console.log('Age:', age);
-    console.log('Image URL:', image);
-
     membersArr.push({name, description, age, image});
     members = JSON.stringify(membersArr);
-    console.log("members", members);
 
     form.name.value = null;
     form.description.value = null;
@@ -54,26 +76,14 @@ function handleFormSubmission(event) {
     showMemberCards();
 }
 
-function showMemberCards() {
-  const cardsContainer = document.querySelector('.member-cards-container');
-  let membersArr = JSON.parse(members);
-  cardsContainer.innerHTML = ''; 
-
-  membersArr.forEach(member => {
-    const card = document.createElement('div');
-    card.classList.add('member-card');
-
-    card.innerHTML = `
-      <img src="${member.image}" alt="${member.name}">
-      <h2>${member.name}</h2>
-      <p>Age: ${member.age}</p>
-      <p>${member.description}</p>
-    `;
-
-    cardsContainer.appendChild(card);
-  });
+function clearMembers() {
+  members = "[]";
+  showMemberCards();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function removeMember(index) {
+  let membersArr = JSON.parse(members);
+  membersArr.splice(index, 1);
+  members = JSON.stringify(membersArr);
   showMemberCards();
-});
+}
