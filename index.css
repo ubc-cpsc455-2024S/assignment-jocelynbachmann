@@ -20,6 +20,14 @@ body {
   color: #737272;
 }
 
+.about-description {
+  padding: 20px;
+}
+
+.about-requirements {
+  color: #737272;
+}
+
 .hidden-form {
   display: none;
 }
@@ -142,6 +150,20 @@ body {
 
 .member-card p {
   margin: 0;
+}
+
+@keyframes rainbow {
+  0% { color: red; }
+  16% { color: orange; }
+  33% { color: yellow; }
+  50% { color: green; }
+  66% { color: blue; }
+  83% { color: indigo; }
+  100% { color: violet; }
+}
+
+.about-hello, .member-card-name {
+  animation: rainbow 4s linear infinite;
 }
 
 

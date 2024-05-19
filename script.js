@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showMemberCards() {
   const cardsContainer = document.querySelector('.member-cards-container');
+  if (!cardsContainer) return;
+
   let membersArr = JSON.parse(members);
   cardsContainer.innerHTML = ''; 
 
@@ -40,7 +42,7 @@ function showMemberCards() {
 
     card.innerHTML = `
       <img src="${member.image}" alt="${member.name}">
-      <h2>${member.name}</h2>
+      <h2 class="member-card-name">${member.name}</h2>
       <p>Age: ${member.age}</p>
       <p>${member.description}</p>
       <button onclick="removeMember(${index})" class="basic-button remove-button">Remove</button>
