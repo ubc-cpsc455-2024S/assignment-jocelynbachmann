@@ -24,14 +24,30 @@ body {
   display: none;
 }
 
+.member-form-container {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(80, 191, 50, 0.747);
+  padding: 10px;
+  margin: 20px;
+}
+
+.member-form-title {
+  color: #414040;
+  margin-left: 5px;
+}
+
 .member-form {
   display: flex;
   flex-direction: column;
+  color: #414040;
 }
 
 .member-form input {
   display: block;
   margin: 5px;
+  border: 1px solid #AAD9BB;
+  border-radius: 5px;
 }
 
 .member-form label {
@@ -54,18 +70,21 @@ body {
 }
 
 .name-age-container input {
-  width: 200px;
+  width: 30%;
 }
 
 .members-title {
   display: flex;
   justify-content: center;
+  padding: 20px;
   margin-bottom: 0px;
+  color: #414040;
 }
 
 .members-button-container {
   display: flex;
   justify-content: right;
+  padding: 20px;
 }
 
 .basic-button {
@@ -82,7 +101,7 @@ body {
 }
 
 .member-form-submit, .add-button {
-  background-color: #AAD9BB;
+  background-color: #7fd69f;
 }
 
 .add-button {
@@ -105,6 +124,7 @@ body {
   box-shadow: 0 2px 5px rgba(80, 191, 50, 0.747);
   padding: 10px;
   text-align: center;
+  color: #737272;
 }
 
 .member-card img {
@@ -117,6 +137,7 @@ body {
 .member-card h2 {
   font-size: 1.5em;
   margin: 0;
+  color: #414040;
 }
 
 .member-card p {

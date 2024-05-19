@@ -51,7 +51,7 @@ function showMemberCards() {
 }
 
 function toggleFormVisibility() {
-  const form = document.querySelector('.form-container');
+  const form = document.querySelector('.member-form-container');
   form.classList.toggle('hidden-form');
 }
 
@@ -74,6 +74,7 @@ function handleFormSubmission(event) {
     form.image.value = null;
 
     showMemberCards();
+    toggleFormVisibility();
 }
 
 function clearMembers() {

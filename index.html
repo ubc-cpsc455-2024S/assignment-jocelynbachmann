@@ -15,7 +15,8 @@
     </nav>
   </div>
 
-  <div class="form-container hidden-form">
+  <div class="member-form-container hidden-form">
+    <h2 class="member-form-title">Add a Member</h2>
     <form action="script.js" onsubmit="handleFormSubmission(event)" class="member-form">
       <div class="name-age-container">
         <label for="name">Name</label>
@@ -27,7 +28,7 @@
       <input type="text" id="description" name="description" class="member-form-description" required>
       <label for="name">Image URL</label>
       <input type="text" id="image" name="image" required>
-      <button class="basic-button member-form-submit" onClick="toggleFormVisibility()">Add</button>
+      <input type="submit" class="basic-button member-form-submit">
     </form>
   </div>
 
