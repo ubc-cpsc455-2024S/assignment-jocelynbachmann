@@ -65,10 +65,6 @@ button:focus-visible {
   color: #737272;
 }
 
-.hidden-form {
-  display: none;
-}
-
 .member-form-container {
   border: 2px solid #ccc;
   border-radius: 5px;
