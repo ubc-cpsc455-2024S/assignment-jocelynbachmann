@@ -3,7 +3,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+button, .member-form-submit {
   border-radius: 5px;
   border: 1px solid transparent;
   margin-top: 10px;
@@ -67,23 +67,27 @@ button {
 
 .member-form input {
   display: block;
-  margin: 5px;
+  margin: 5px 5px 5px 0px;
   border: 1px solid #AAD9BB;
   border-radius: 5px;
 }
 
 .member-form label {
-  margin: 5px 5px 3px 5px;
+  margin: 5px 5px 3px 0px;
   font-weight: bold;
 }
 
 .member-form-description {
   height: 100px;
+  width: 80%;
+}
+
+.member-form-image {
+  width: 80%;
 }
 
 .member-form-submit {
   width: 100px;
-  margin: 10px 5px;
 }
 
 .name-age-container {
@@ -91,8 +95,16 @@ button {
   align-items: baseline;
 }
 
-.name-age-container input {
-  width: 30%;
+.name-age-container label {
+  margin-right: 30px;
+}
+
+.name-container, .age-container {
+  width: 20%;
+}
+
+.name-container input, .age-container input {
+  width: 100%;
 }
 
 .members-title {
@@ -117,7 +129,7 @@ button {
   background-color: #7fd69f;
 }
 
-.add-button {
+.add-button, .clear-button {
   margin-right: 20px;
 }
 

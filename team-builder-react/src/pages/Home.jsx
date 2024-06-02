@@ -22,10 +22,10 @@ const Home = () => {
       <div>
         <h1 className="members-title">Team Members</h1>
         <div className="members-button-container">
-          <button className="basic-button add-button" onClick={toggleFormVisibility}>
+          <button className={isFormVisible ? "clear-button" : "add-button"} onClick={toggleFormVisibility}>
             {isFormVisible ? 'Cancel' : 'Add Member'}
           </button>
-          <button className="basic-button clear-button" onClick={handleClear}>Clear Members</button>
+          <button className="clear-button" onClick={handleClear}>Clear Members</button>
         </div>
       </div>
       <MemberCards />

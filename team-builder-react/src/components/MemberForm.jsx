@@ -42,11 +42,11 @@ const MemberForm = ({ toggleVisibility }) => {
       <h2 className="member-form-title">Add a Member</h2>
       <form action="script.js" onSubmit={handleSubmit} className="member-form">
         <div className="name-age-container">
-          <label>
+          <label className="name-container">
             Name
             <input type="text" id="name" name="name" value={memberData.name} onChange={handleChange} required />
           </label>
-          <label>
+          <label className="age-container">
             Age
             <input type="number" id="age" name="age" value={memberData.age} onChange={handleChange} required />
           </label>
@@ -57,9 +57,9 @@ const MemberForm = ({ toggleVisibility }) => {
         </label>
         <label>
           Image URL
-          <input type="text" id="image" name="image" value={memberData.image} onChange={handleChange} required />
+          <input type="text" id="image" name="image" className="member-form-image" value={memberData.image} onChange={handleChange} required />
         </label>
-        <input type="submit" className="basic-button member-form-submit" />
+        <input type="submit" className="member-form-submit" />
       </form>
     </div>
   )

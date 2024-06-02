@@ -27,10 +27,10 @@ const MemberCards = () => {
         <div key={member.id} className="member-card">
           <img src={member.image} alt={member.name} className="member-card-image" />
           <h2 className="member-card-name">{member.name}</h2>
-          <button className="basic-button details-button" onClick={() => handleShowDetails(member)}>
+          <button className="details-button" onClick={() => handleShowDetails(member)}>
             Show Details
           </button>
-          <button className="basic-button remove-button" onClick={() => handleRemoveMember(member.id)}>
+          <button className="remove-button" onClick={() => handleRemoveMember(member.id)}>
             Remove
           </button>
         </div>
@@ -45,7 +45,7 @@ const MemberCards = () => {
             </div>
             <p className="member-card-age">Age: {selectedMember.age}</p>
             <p className="member-card-description">Description: {selectedMember.description}</p>
-            <button className="basic-button remove-button" onClick={() => handleRemoveMember(selectedMember.id)}>
+            <button className="remove-button" onClick={() => handleRemoveMember(selectedMember.id)}>
               Remove
             </button>
           </div>
