@@ -2,11 +2,13 @@ import fs from 'fs-extra';
 import path from 'path';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const filePath = path.join(__dirname, '../members.json');
+const initialMembers = await fs.readJson(filePath);
+
+let members = initialMembers;
 
 async function getMembers() {
   try {
-    const filePath = path.join(__dirname, '../members.json');
-    const members = await fs.readJson(filePath);
     return members;
   } catch (err) {
     console.error("Error parsing JSON file: ", err);
@@ -14,6 +16,26 @@ async function getMembers() {
   }
 }
 
+async function createMember(member) {
+  try {
+    members.push(member);
+  } catch (err) {
+    console.error("Error adding member: ", err);
+    throw err;
+  }
+}
+
+async function deleteMember(id) {
+  members = members.filter(member => member.id != id);
+}
+
+async function clearMembers() {
+  members = [];
+}
+
 export default {
   getMembers,
+  createMember,
+  deleteMember,
+  clearMembers,
 }
