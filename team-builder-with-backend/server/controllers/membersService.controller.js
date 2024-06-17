@@ -1,4 +1,4 @@
-import MembersService from "../services/membersService.service"
+import MembersService from "../services/membersService.service.js"
 
 async function getMembers(req, res) {
   try {
@@ -7,4 +7,8 @@ async function getMembers(req, res) {
 	} catch (err) {
 		res.status(500).json({ message: err.message });
 	}
+}
+
+export default {
+  getMembers,
 }

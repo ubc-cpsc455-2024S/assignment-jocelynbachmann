@@ -1,10 +1,9 @@
 import express from 'express';
-import MembersServiceController from '../controllers/membersService.controller';
-
+import MembersServiceController from './controllers/membersService.controller.js'
 const router = express.Router();
 
 // get members
 router.get('/', MembersServiceController.getMembers);
 
 
-module.exports = router;
+export default router;
