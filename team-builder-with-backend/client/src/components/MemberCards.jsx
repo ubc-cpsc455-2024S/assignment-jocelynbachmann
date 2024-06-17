@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeMember, fetchMembers } from '../membersSlice';
+import EditForm from './EditForm';
 
 const MemberCards = () => {
   const dispatch = useDispatch();
@@ -8,6 +9,7 @@ const MemberCards = () => {
   const memberStatus = useSelector((state) => state.members.status);
   const error = useSelector((state) => state.members.error);
   const [selectedMember, setSelectedMember] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (memberStatus === 'idle') {
@@ -16,16 +18,24 @@ const MemberCards = () => {
   }, [memberStatus, dispatch]);
 
   const handleShowDetails = (member) => {
+    setIsEditing(false);
     setSelectedMember(member);
+  };
+
+  const handleEditMember = (member) => {
+    setSelectedMember(member);
+    setIsEditing(true);
   };
 
   const handleCloseModal = () => {
     setSelectedMember(null);
+    setIsEditing(false);
   };
 
   const handleRemoveMember = (id) => {
     dispatch(removeMember(id));
     setSelectedMember(null);
+    setIsEditing(false);
   };
 
   let content;
@@ -40,6 +50,9 @@ const MemberCards = () => {
         <button className="details-button" onClick={() => handleShowDetails(member)}>
           Show Details
         </button>
+        <button className="edit-button" onClick={() => handleEditMember(member)}>
+          Edit
+        </button>
         <button className="remove-button" onClick={() => handleRemoveMember(member.id)}>
           Remove
         </button>
@@ -50,26 +63,36 @@ const MemberCards = () => {
   }
 
   return (
-    <div className="member-cards-container">
-      {content}
-      {selectedMember && (
-        <div className="details-modal">
-          <div className="details-modal-content">
-            <button className="details-close-button" onClick={handleCloseModal}>&times;</button>
-            <h2 className="details-name">{selectedMember.name}</h2>
-            <div className="details-image-container">
-              <img src={selectedMember.image} alt={selectedMember.name} className="details-image" />
+    <div className="members-container">
+      <div className="edit-form-container">
+        {selectedMember && isEditing && (
+          <EditForm member={selectedMember} onClose={handleCloseModal} />
+        )}
+      </div>
+      <div className="member-cards-container">
+        {content}
+        {selectedMember && !isEditing && (
+          <div className="details-modal">
+            <div className="details-modal-content">
+              <button className="details-close-button" onClick={handleCloseModal}>&times;</button>
+              <h2 className="details-name">{selectedMember.name}</h2>
+              <div className="details-image-container">
+                <img src={selectedMember.image} alt={selectedMember.name} className="details-image" />
+              </div>
+              <p className="member-card-age">Age: {selectedMember.age}</p>
+              <p className="member-card-description">Description: {selectedMember.description}</p>
+              <button className="edit-button padded-button" onClick={() => handleEditMember(selectedMember)}>
+                Edit
+              </button>
+              <button className="remove-button padded-button" onClick={() => handleRemoveMember(selectedMember.id)}>
+                Remove
+              </button>
             </div>
-            <p className="member-card-age">Age: {selectedMember.age}</p>
-            <p className="member-card-description">Description: {selectedMember.description}</p>
-            <button className="remove-button" onClick={() => handleRemoveMember(selectedMember.id)}>
-              Remove
-            </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
 export default MemberCards;

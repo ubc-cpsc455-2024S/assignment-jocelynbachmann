@@ -24,6 +24,18 @@ export const addMember = createAsyncThunk('members/addMember', async (member) =>
   return member;
 });
 
+export const updateMember = createAsyncThunk('members/updateMember', async (member) => {
+  await axios.patch(`http://localhost:4000/members/${member.id}`, {
+    id: member.id,
+    name: member.name,
+    age: member.age,
+    description: member.description,
+    image: member.image
+  });
+
+  return member;
+});
+
 export const removeMember = createAsyncThunk('members/removeMember', async (id) => {
   await axios.delete(`http://localhost:4000/members/${id}`);
   return id;
@@ -44,6 +56,19 @@ const membersSlice = createSlice({
         state.members.push(action.payload);
       })
       .addCase(addMember.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      })
+      .addCase(updateMember.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.members = state.members.map(member => {
+          if (member.id == action.payload.id) {
+            return action.payload;
+          }
+          return member;
+        })
+      })
+      .addCase(updateMember.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       })

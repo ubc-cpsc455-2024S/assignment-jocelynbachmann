@@ -121,15 +121,19 @@ button, .member-form-submit {
   padding: 20px;
 }
 
-.clear-button, .remove-button, .details-close-button {
+.clear-button, .remove-button, .details-close-button, .member-form-cancel {
   background-color: #ff4c4cb5;
+}
+
+.edit-button {
+  background-color: rgb(111, 204, 247);
 }
 
 .member-form-submit, .add-button, .details-button {
   background-color: #7fd69f;
 }
 
-.add-button, .clear-button {
+.padded-button {
   margin-right: 20px;
 }
 
