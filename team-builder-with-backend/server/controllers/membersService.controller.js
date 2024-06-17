@@ -18,27 +18,37 @@ async function addMember(req, res) {
   }
 }
 
+async function editMember(req, res) {
+  try {
+    await MembersService.editMember(req.params.id, req.body);
+    res.status(200).json({ message: 'Updated member.'});
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+}
+
 async function deleteMember(req, res) {
   try {
 		await MembersService.deleteMember(req.params.id);
-		res.status(202).json({ message: 'Deleted member.' });
+		res.status(204).json({ message: 'Deleted member.' });
 	} catch (err) {
-		res.status(505).json({ message: err.message });
+		res.status(404).json({ message: err.message });
 	}
 }
 
 async function clearMembers(req, res) {
   try {
 		await MembersService.clearMembers();
-		res.status(202).json({ message: 'Deleted all members.' });
+		res.status(204).json({ message: 'Deleted all members.' });
 	} catch (err) {
-		res.status(505).json({ message: err.message });
+		res.status(500).json({ message: err.message });
 	}
 }
 
 export default {
   getMembers,
   addMember,
+  editMember,
   deleteMember,
   clearMembers,
 }

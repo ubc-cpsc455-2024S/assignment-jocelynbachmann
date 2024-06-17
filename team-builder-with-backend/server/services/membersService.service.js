@@ -25,6 +25,20 @@ async function createMember(member) {
   }
 }
 
+async function editMember(id, updatedFields) {
+  try {
+    members = members.map(member => {
+      if (member.id == id) {
+        return {...member, ...updatedFields};
+      }
+      return member;
+    });
+  } catch (err) {
+    console.error("Error editing member: ", err);
+    throw err;
+  }
+}
+
 async function deleteMember(id) {
   members = members.filter(member => member.id != id);
 }
@@ -36,6 +50,7 @@ async function clearMembers() {
 export default {
   getMembers,
   createMember,
+  editMember,
   deleteMember,
   clearMembers,
 }

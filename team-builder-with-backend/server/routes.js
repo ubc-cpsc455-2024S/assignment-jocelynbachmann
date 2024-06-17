@@ -6,6 +6,8 @@ router.get('/', MembersServiceController.getMembers);
 
 router.post('/', MembersServiceController.addMember);
 
+router.patch('/:id', MembersServiceController.editMember)
+
 router.delete('/:id', MembersServiceController.deleteMember);
 
 router.delete('/', MembersServiceController.clearMembers);
