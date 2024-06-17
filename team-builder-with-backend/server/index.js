@@ -9,6 +9,7 @@ app.use(cors({
 	origin: '*'
 }));
 
+app.use(express.json());
 
 app.get('/', (_req, _res) => {
 	const test = "Server Running";
@@ -20,7 +21,6 @@ app.listen(port, () => {
 	console.log(`JavaScript with Express http://localhost:${port}/`);
 });
 
-app.use(express.json());
 app.use('/members', membersRouter);
 
 export default app;

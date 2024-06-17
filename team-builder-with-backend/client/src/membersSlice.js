@@ -1,6 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// const initialState = get request
+const initialState = {
+  members: [],
+  status: 'idle', 
+  error: null
+}
+
+export const fetchMembers = createAsyncThunk('members/fetchMembers', async () => {
+  const res = await axios.get('http://localhost:4000/members');
+  return res.data;
+});
 
 const membersSlice = createSlice({
   name: 'members',
@@ -16,6 +26,20 @@ const membersSlice = createSlice({
       state.members = [];
     }
   },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchMembers.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchMembers.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.members = action.payload;
+      })
+      .addCase(fetchMembers.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  }
 });
 
 export const { addMember, removeMember, clearMembers } = membersSlice.actions;
