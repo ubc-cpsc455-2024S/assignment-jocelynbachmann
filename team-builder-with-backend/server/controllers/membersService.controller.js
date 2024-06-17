@@ -21,7 +21,7 @@ async function addMember(req, res) {
 async function deleteMember(req, res) {
   try {
 		await MembersService.deleteMember(req.params.id);
-		res.json({ message: 'Deleted member.' });
+		res.status(202).json({ message: 'Deleted member.' });
 	} catch (err) {
 		res.status(505).json({ message: err.message });
 	}
@@ -30,7 +30,7 @@ async function deleteMember(req, res) {
 async function clearMembers(req, res) {
   try {
 		await MembersService.clearMembers();
-		res.json({ message: 'Deleted all members.' });
+		res.status(202).json({ message: 'Deleted all members.' });
 	} catch (err) {
 		res.status(505).json({ message: err.message });
 	}
