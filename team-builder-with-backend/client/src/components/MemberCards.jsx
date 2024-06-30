@@ -44,7 +44,7 @@ const MemberCards = () => {
     content = <div>Loading...</div>;
   } else if (memberStatus === 'succeeded') {
     content = members.map((member) => (
-      <div key={member.id} className="member-card">
+      <div key={member._id} className="member-card">
         <img src={member.image} alt={member.name} className="member-card-image" />
         <h2 className="member-card-name">{member.name}</h2>
         <button className="details-button" onClick={() => handleShowDetails(member)}>
