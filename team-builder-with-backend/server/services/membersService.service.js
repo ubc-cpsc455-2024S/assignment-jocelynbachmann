@@ -1,21 +1,4 @@
-import fs from 'fs-extra';
-import path from 'path';
 import memberQueries from '../queries/memberQuery.js'
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-const filePath = path.join(__dirname, '../members.json');
-const initialMembers = await fs.readJson(filePath);
-
-let members = initialMembers;
-
-// async function getMembers() {
-//   try {
-//     return members;
-//   } catch (err) {
-//     console.error("Error parsing JSON file: ", err);
-//     throw err;
-//   }
-// }
 
 async function getMembers() {
   try {
@@ -28,7 +11,7 @@ async function getMembers() {
 
 async function createMember(member) {
   try {
-    members.push(member);
+    return await memberQueries.addMember(member);
   } catch (err) {
     console.error("Error adding member: ", err);
     throw err;

@@ -13,7 +13,7 @@ export const fetchMembers = createAsyncThunk('members/fetchMembers', async () =>
 });
 
 export const addMember = createAsyncThunk('members/addMember', async (member) => {
-  await axios.post(`http://localhost:4000/members/`, {
+  const newMember = await axios.post(`http://localhost:4000/members/`, {
     id: member.id,
     name: member.name,
     age: member.age,
@@ -21,7 +21,7 @@ export const addMember = createAsyncThunk('members/addMember', async (member) =>
     image: member.image
   });
 
-  return member;
+  return newMember.data;
 });
 
 export const updateMember = createAsyncThunk('members/updateMember', async (member) => {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addMember } from '../membersSlice';
-import { v4 as uuidv4 } from 'uuid';
 
 const MemberForm = ({ toggleVisibility }) => {
   const dispatch = useDispatch();
@@ -21,13 +20,7 @@ const MemberForm = ({ toggleVisibility }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    const member = {
-      id: uuidv4(),
-      ...memberData
-    };
-    dispatch(addMember(member));
-
+    dispatch(addMember(memberData));
     toggleVisibility();
     setMemberData({
       name: '',

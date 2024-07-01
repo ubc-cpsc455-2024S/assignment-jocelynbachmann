@@ -18,7 +18,17 @@ const memberQueries = {
       console.error(`Error fetching member with id ${id}:`, error);
       throw error;
     }
-  }
+  },
+  addMember: async function (memberData) {
+    try {
+      const newMember = new Members(memberData);
+      const savedMember = await newMember.save();
+      return savedMember;
+    } catch (error) {
+      console.error("Error saving new member:", error);
+      throw error;
+    }
+  },
 }
 
 export default memberQueries;
