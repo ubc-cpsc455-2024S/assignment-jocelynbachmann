@@ -20,12 +20,7 @@ async function createMember(member) {
 
 async function editMember(id, updatedFields) {
   try {
-    members = members.map(member => {
-      if (member.id == id) {
-        return {...member, ...updatedFields};
-      }
-      return member;
-    });
+    return await memberQueries.updateMember(id, updatedFields);
   } catch (err) {
     console.error("Error editing member: ", err);
     throw err;

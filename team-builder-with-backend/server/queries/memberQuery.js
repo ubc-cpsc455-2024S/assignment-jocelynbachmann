@@ -29,6 +29,14 @@ const memberQueries = {
       throw error;
     }
   },
+  updateMember: async function (memberID, memberData) {
+    try {
+      return await Members.findByIdAndUpdate(memberID, memberData, {new: true});
+    } catch (error) {
+      console.error(`Error updating member with id ${memberData._id}:`, error);
+      throw error;
+    }
+  },
 }
 
 export default memberQueries;

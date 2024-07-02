@@ -20,8 +20,8 @@ async function addMember(req, res) {
 
 async function editMember(req, res) {
   try {
-    await MembersService.editMember(req.params.id, req.body);
-    res.status(200).json({ message: 'Updated member.'});
+    const updatedMember = await MembersService.editMember(req.params.id, req.body);
+    res.status(200).json(updatedMember);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

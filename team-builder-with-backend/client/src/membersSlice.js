@@ -13,27 +13,13 @@ export const fetchMembers = createAsyncThunk('members/fetchMembers', async () =>
 });
 
 export const addMember = createAsyncThunk('members/addMember', async (member) => {
-  const newMember = await axios.post(`http://localhost:4000/members/`, {
-    id: member.id,
-    name: member.name,
-    age: member.age,
-    description: member.description,
-    image: member.image
-  });
-
+  const newMember = await axios.post(`http://localhost:4000/members/`, member);
   return newMember.data;
 });
 
 export const updateMember = createAsyncThunk('members/updateMember', async (member) => {
-  await axios.patch(`http://localhost:4000/members/${member.id}`, {
-    id: member.id,
-    name: member.name,
-    age: member.age,
-    description: member.description,
-    image: member.image
-  });
-
-  return member;
+  const updatedMember = await axios.patch(`http://localhost:4000/members/${member._id}`, member);
+  return updatedMember.data;
 });
 
 export const removeMember = createAsyncThunk('members/removeMember', async (id) => {
@@ -61,12 +47,10 @@ const membersSlice = createSlice({
       })
       .addCase(updateMember.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.members = state.members.map(member => {
-          if (member.id == action.payload.id) {
-            return action.payload;
-          }
-          return member;
-        })
+        const index = state.members.findIndex(member => member._id === action.payload._id);
+        if (index !== -1) {
+          state.members[index] = action.payload;
+        }
       })
       .addCase(updateMember.rejected, (state, action) => {
         state.status = 'failed';
