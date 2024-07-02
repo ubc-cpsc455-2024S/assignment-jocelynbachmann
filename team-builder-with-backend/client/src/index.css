@@ -99,11 +99,11 @@ button, .member-form-submit {
   margin-right: 30px;
 }
 
-.name-container, .age-container {
+.name-container, .age-container, .species-container {
   width: 20%;
 }
 
-.name-container input, .age-container input {
+.name-container input, .age-container input, .species-container input {
   width: 100%;
 }
 

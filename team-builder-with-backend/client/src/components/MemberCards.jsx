@@ -80,6 +80,7 @@ const MemberCards = () => {
                 <img src={selectedMember.image} alt={selectedMember.name} className="details-image" />
               </div>
               <p className="member-card-age">Age: {selectedMember.age}</p>
+              <p className="member-card-species">Species: {selectedMember.species}</p>
               <p className="member-card-description">Description: {selectedMember.description}</p>
               <button className="edit-button padded-button" onClick={() => handleEditMember(selectedMember)}>
                 Edit

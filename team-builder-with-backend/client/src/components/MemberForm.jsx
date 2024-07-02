@@ -43,6 +43,10 @@ const MemberForm = ({ toggleVisibility }) => {
             Age
             <input type="number" id="age" name="age" value={memberData.age} onChange={handleChange} required />
           </label>
+          <label className="species-container">
+            Species
+            <input type="text" id="species" name="species" value={memberData.species} onChange={handleChange} required />
+          </label>
         </div>
         <label>
           Description

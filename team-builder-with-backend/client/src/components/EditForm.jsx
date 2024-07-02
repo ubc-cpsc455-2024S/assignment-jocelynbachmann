@@ -33,6 +33,10 @@ const EditMemberForm = ({ member, onClose }) => {
             Age
             <input type="number" id="age" name="age" value={editedMember.age} onChange={handleChange} required />
           </label>
+          <label className="species-container">
+            Species
+            <input type="text" id="species" name="species" value={editedMember.species} onChange={handleChange} required />
+          </label>
         </div>
         <label>
           Description
