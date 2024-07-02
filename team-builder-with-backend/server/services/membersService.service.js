@@ -28,11 +28,21 @@ async function editMember(id, updatedFields) {
 }
 
 async function deleteMember(id) {
-  members = members.filter(member => member.id != id);
+  try {
+    return await memberQueries.deleteMember(id);
+  } catch (err) {
+    console.error("Error deleting member: ", err);
+    throw err;
+  } 
 }
 
 async function clearMembers() {
-  members = [];
+  try {
+    return await memberQueries.deleteAllMembers();
+  } catch (err) {
+    console.error("Error clearing members: ", err);
+    throw err;
+  } 
 }
 
 export default {

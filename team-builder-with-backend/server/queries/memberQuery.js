@@ -37,6 +37,22 @@ const memberQueries = {
       throw error;
     }
   },
+  deleteMember: async function (memberID) {
+    try {
+      return await Members.deleteOne({ _id: memberID });
+    } catch (error) {
+      console.error(`Error deleting member with id ${memberID}:`, error);
+      throw error;
+    }
+  },
+  deleteAllMembers: async function () {
+    try {
+      return await Members.deleteMany();
+    } catch (error) {
+      console.error("Error clearing members:", error);
+      throw error;
+    }
+  }
 }
 
 export default memberQueries;

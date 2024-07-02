@@ -53,7 +53,7 @@ const MemberCards = () => {
         <button className="edit-button" onClick={() => handleEditMember(member)}>
           Edit
         </button>
-        <button className="remove-button" onClick={() => handleRemoveMember(member.id)}>
+        <button className="remove-button" onClick={() => handleRemoveMember(member._id)}>
           Remove
         </button>
       </div>
@@ -84,7 +84,7 @@ const MemberCards = () => {
               <button className="edit-button padded-button" onClick={() => handleEditMember(selectedMember)}>
                 Edit
               </button>
-              <button className="remove-button padded-button" onClick={() => handleRemoveMember(selectedMember.id)}>
+              <button className="remove-button padded-button" onClick={() => handleRemoveMember(selectedMember._id)}>
                 Remove
               </button>
             </div>

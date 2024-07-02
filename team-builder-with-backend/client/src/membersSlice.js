@@ -68,7 +68,7 @@ const membersSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(removeMember.fulfilled, (state, action) => {
-        state.members = state.members.filter(member => member.id !== action.payload);
+        state.members = state.members.filter(member => member._id !== action.payload);
       })
       .addCase(removeMember.rejected, (state, action) => {
         state.status = 'failed';
