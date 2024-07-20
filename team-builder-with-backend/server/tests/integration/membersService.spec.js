@@ -4,6 +4,8 @@ import server from '../../index.js';
 import Members from '../../models/memberSchema.js';
 import { member1Data, member2Data, member3Data, incompleteMemberData } from '../data/membersData.js';
 
+// test
+
 describe('Members', () => {
   beforeEach(async () => {
 		await Members.deleteMany({});
