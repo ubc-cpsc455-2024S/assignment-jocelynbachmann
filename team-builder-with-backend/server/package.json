@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha --exit tests/**/*.spec.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "echo 'No build required for server'"
   },
   "keywords": [],
   "author": "",
