@@ -5,13 +5,18 @@ import Members from '../../models/memberSchema.js';
 import { member1Data, member2Data, member3Data, incompleteMemberData } from '../data/membersData.js';
 
 describe('Members', () => {
-  beforeEach(async () => {
-		await Members.deleteMany({});
-		const member1 = new Members(member1Data);
-		await member1.save();
-		const member2 = new Members(member2Data);
-		await member2.save();
-	});
+  
+  beforeEach(async function () {
+    console.log('Starting beforeEach hook');
+    await Members.deleteMany({});
+    console.log('Deleted all members');
+    const member1 = new Members(member1Data);
+    await member1.save();
+    console.log('Saved member1');
+    const member2 = new Members(member2Data);
+    await member2.save();
+    console.log('Saved member2');
+  });
 
   describe('GET /members', () => {
     it('should get all members', async () => {
@@ -103,10 +108,6 @@ describe('Members', () => {
     });
   });
 
-  after(async () => {
-		await Members.deleteMany({});
-	});
-
   describe('DELETE /members/:id', () => {
     it('should delete member with the given id', async () => {
       const member3 = new Members(member3Data);
@@ -132,6 +133,12 @@ describe('Members', () => {
       const response2 = await request(server).get('/members');
       expect(response2.body.length).to.equal(0);
     });
+  });
+
+  after(async function () {
+    console.log('Starting after hook');
+    await Members.deleteMany({});
+    console.log('Deleted all members');
   });
 });
 
