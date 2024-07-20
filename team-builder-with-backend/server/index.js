@@ -2,9 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import membersRouter from './routes.js';
+import path from 'path';
 import dotenv from 'dotenv';
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'test' ? 'test.env' : '.env';
+const __dirname = path.resolve();
+
+dotenv.config({ path: path.resolve(__dirname, envFile) });
 
 const app = express();
 const port = 4000;
