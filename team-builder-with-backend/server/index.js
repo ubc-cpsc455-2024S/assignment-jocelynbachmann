@@ -34,7 +34,8 @@ app.use('/members', membersRouter);
 const dbStr = process.env.MONGO_DB_CONNECT_STR;
 console.log(dbStr);
 
-mongoose.connect(dbStr);
+// mongoose.connect(dbStr);
+mongoose.connect(dbStr, { sslValidate: false });
 const db = mongoose.connection; 
 
 db.on('error', (error) => console.error(error));
