@@ -21,6 +21,10 @@ jobs:
       with:
         node-version: '18'
 
+    - name: Set up environment variables
+      run: |
+        echo "MONGO_DB_CONNECT_STR=${{ secrets.MONGO_DB_CONNECT_STR }}" >> $GITHUB_ENV
+
     - name: Install dependencies
       run: |
         cd team-builder-with-backend/server
