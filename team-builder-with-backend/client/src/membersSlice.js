@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 const initialState = {
   members: [],
   status: 'idle', 
@@ -8,27 +10,27 @@ const initialState = {
 }
 
 export const fetchMembers = createAsyncThunk('members/fetchMembers', async () => {
-  const res = await axios.get('http://localhost:4000/members');
+  const res = await axios.get(`${BASE_URL}/members`);
   return res.data;
 });
 
 export const addMember = createAsyncThunk('members/addMember', async (member) => {
-  const newMember = await axios.post(`http://localhost:4000/members/`, member);
+  const newMember = await axios.post(`${BASE_URL}/members/`, member);
   return newMember.data;
 });
 
 export const updateMember = createAsyncThunk('members/updateMember', async (member) => {
-  const updatedMember = await axios.patch(`http://localhost:4000/members/${member._id}`, member);
+  const updatedMember = await axios.patch(`${BASE_URL}/members/${member._id}`, member);
   return updatedMember.data;
 });
 
 export const removeMember = createAsyncThunk('members/removeMember', async (id) => {
-  await axios.delete(`http://localhost:4000/members/${id}`);
+  await axios.delete(`${BASE_URL}/members/${id}`);
   return id;
 });
 
 export const clearMembers = createAsyncThunk('members/clearMembers', async () => {
-  await axios.delete('http://localhost:4000/members/');
+  await axios.delete(`${BASE_URL}/members/`);
 });
 
 const membersSlice = createSlice({
