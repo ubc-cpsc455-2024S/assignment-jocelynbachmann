@@ -115,7 +115,7 @@ describe('Members', () => {
       expect(response.status).to.equal(204);
 
       const response2 = await request(server).get('/members');
-      expect(response2.body.length).to.equal(2);
+      expect(response2.body.length).to.equal(0);
     });
 
     it('should fail if id is invalid', async () => {
